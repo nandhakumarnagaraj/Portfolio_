@@ -77,6 +77,8 @@ const activateTab = (tab, focus = false) => {
 tabs.forEach((tab) => {
   tab.addEventListener('click', () => activateTab(tab));
   tab.addEventListener('keydown', (event) => {
+    if (event.key === 'Home') { event.preventDefault(); activateTab(tabs[0], true); return; }
+    if (event.key === 'End') { event.preventDefault(); activateTab(tabs[tabs.length - 1], true); return; }
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
     event.preventDefault();
     const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
